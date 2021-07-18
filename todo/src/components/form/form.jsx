@@ -1,12 +1,40 @@
-import './form.scss'
+import { Fragment, useState } from 'react';
 
-const Form = () => {
+import Input from '../input/input';
+import List from '../list/list';
+import './form.scss';
+
+const Form = ({ onToDoClick }) => {
+  const [toDos, setToDos] = useState([]);
+
+  console.log({ toDos });
+
+  // const handleToDoClick = (isCompleted) => {
+  //   setCompleted(!isCompleted);
+  // };
+  const handleAdd = (newToDo) => {
+    const newToDoList = [
+      {
+        text: newToDo,
+        isCompleted: false,
+        id: Date.now()
+      },
+      ...toDos
+    ];
+
+    console.log({ newToDoList });
+
+    setToDos(newToDoList);
+  };
+
   return (
-    <form className="form">
-      <input className="form__input" placeholder="What me do?" name="to-do-input"></input>
-      <label className="form__label visually-hidden" htmlFor="to-do-input">Fill in to do</label>
-    </form>
-  )
-}
+    <Fragment>
+      <div className='form'>
+        <Input onAdd={handleAdd} />
+      </div>
+      <List toDos={toDos}></List>
+    </Fragment>
+  );
+};
 
-export default Form
+export default Form;
