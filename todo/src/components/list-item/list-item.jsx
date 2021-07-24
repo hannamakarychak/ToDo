@@ -2,11 +2,12 @@ import classNames from 'classnames';
 
 import './list-item.scss';
 
-const ListItem = ({ isCompleted, text, onChange }) => {
+const ListItem = ({ isCompleted, text, onChange, id, onToDoClick }) => {
   return (
     <li
       className={classNames('list-item', { 'list-item--completed': isCompleted })}
-      onClick={() => onChange(!isCompleted)}
+      // onClick={() => onChange(!isCompleted)}
+      onClick={() => onToDoClick(id)}
     >
       <svg
         className='list-item__icon'

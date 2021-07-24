@@ -4,14 +4,26 @@ import Input from '../input/input';
 import List from '../list/list';
 import './form.scss';
 
-const Form = ({ onToDoClick }) => {
+const Form = () => {
   const [toDos, setToDos] = useState([]);
 
   console.log({ toDos });
 
-  // const handleToDoClick = (isCompleted) => {
-  //   setCompleted(!isCompleted);
-  // };
+  const handleToDoClick = (id) => {
+    const newToDoList = toDos.map((el) => {
+      if (el.id === id) {
+        // return Object.assign({}, el, { isCompleted: !el.isCompleted });
+        return {
+          ...el,
+          isCompleted: !el.isCompleted
+        };
+      }
+      return el;
+    });
+
+    setToDos(newToDoList);
+  };
+
   const handleAdd = (newToDo) => {
     const newToDoList = [
       {
@@ -32,7 +44,7 @@ const Form = ({ onToDoClick }) => {
       <div className='form'>
         <Input onAdd={handleAdd} />
       </div>
-      <List toDos={toDos}></List>
+      <List toDos={toDos} onToDoClick={handleToDoClick}></List>
     </Fragment>
   );
 };
