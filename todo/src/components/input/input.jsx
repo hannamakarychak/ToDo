@@ -10,8 +10,10 @@ const Input = ({ onAdd }) => {
   };
 
   const handleBlurClick = () => {
-    onAdd(inputState);
-    setInputState('');
+    if (inputState.trim() !== '') {
+      onAdd(inputState);
+      setInputState('');
+    }
   };
 
   const handleInputChange = (e) => {
