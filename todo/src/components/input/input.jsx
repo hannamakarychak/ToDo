@@ -9,6 +9,11 @@ const Input = ({ onAdd }) => {
     }
   };
 
+  const handleBlurClick = () => {
+    onAdd(inputState);
+    setInputState('');
+  };
+
   const handleInputChange = (e) => {
     setInputState(e.target.value);
   };
@@ -20,6 +25,7 @@ const Input = ({ onAdd }) => {
         placeholder='What me do?'
         name='to-do-input'
         onKeyPress={handleKeyPress}
+        onBlur={handleBlurClick}
         onChange={handleInputChange}
         value={inputState}
       />
