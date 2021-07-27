@@ -1,7 +1,7 @@
 import ListItem from '../list-item/list-item';
 import './list.scss';
 
-const List = ({ toDos, onToDoClick }) => {
+const List = ({ toDos, onToDoClick, onDestroyClick }) => {
   return (
     <ul className='list'>
       {toDos.map((toDo) => (
@@ -11,6 +11,7 @@ const List = ({ toDos, onToDoClick }) => {
           key={toDo.id}
           id={toDo.id}
           onToDoClick={onToDoClick}
+          onDestroyClick={onDestroyClick}
         />
       ))}
     </ul>

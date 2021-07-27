@@ -34,9 +34,12 @@ const Form = () => {
       ...toDos
     ];
 
-    console.log({ newToDoList });
-
     setToDos(newToDoList);
+  };
+
+  const handleDestroyClick = (id) => {
+    const filteredToDos = toDos.filter((el) => el.id !== id);
+    setToDos(filteredToDos);
   };
 
   return (
@@ -44,7 +47,7 @@ const Form = () => {
       <div className='form'>
         <Input onAdd={handleAdd} />
       </div>
-      <List toDos={toDos} onToDoClick={handleToDoClick}></List>
+      <List toDos={toDos} onToDoClick={handleToDoClick} onDestroyClick={handleDestroyClick}></List>
     </Fragment>
   );
 };

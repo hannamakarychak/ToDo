@@ -1,0 +1,36 @@
+.destroy-button {
+  position: relative;
+  margin-left: auto;
+  background-color: transparent;
+  border: none;
+  height: 30px;
+  width: 30px;
+
+  &::before,
+  &::after {
+    position: absolute;
+    content: '';
+    right: 5px;
+    height: 1px;
+    width: 15px;
+    background-color: red;
+  }
+
+  &::before {
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+  }
+}
+
+.list-item__button::before,
+.list-item__button::after {
+  display: none;
+}
+
+.list-item:hover .list-item__button::before,
+.list-item:hover .list-item__button::after {
+  display: block;
+}
