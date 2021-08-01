@@ -8,7 +8,7 @@
   --main-dark: rgb(77, 77, 77);
   --white: #ffffff;
   --light-grey: rgb(217, 217, 217);
-  --accent-color-light: rgba(175, 47, 47, 0.2);
+  --accent-color-light: rgba(175, 47, 47, 0.4);
   --accent-color-light--hover: rgba(175, 47, 47, 0.1);
 }
 

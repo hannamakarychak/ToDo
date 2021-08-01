@@ -59,6 +59,7 @@ const Form = () => {
         <Filters
           totalRemaining={toDos.filter((el) => !el.isCompleted).length}
           onChange={setCurrentFilter}
+          currentFilter={currentFilter}
         />
       )}
     </Fragment>

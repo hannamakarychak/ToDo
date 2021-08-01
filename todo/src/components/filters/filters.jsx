@@ -1,6 +1,9 @@
+import classNames from "classnames";
 import "./filters.scss";
 
-const Filters = ({ totalRemaining, onChange }) => {
+const ALL_FILTERS = ["all", "active", "completed"];
+
+const Filters = ({ totalRemaining, onChange, currentFilter }) => {
   const total =
     totalRemaining === 1 ? `${totalRemaining} item left` : `${totalRemaining} items left`;
 
@@ -8,15 +11,20 @@ const Filters = ({ totalRemaining, onChange }) => {
     <div className="filters">
       <span className="filters__active-count">{total} </span>
       <div className="filters__wrapper">
-        <button className="filters__button" name="all" onClick={() => onChange("all")}>
-          All
-        </button>
-        <button className="filters__button" name="active" onClick={() => onChange("active")}>
-          Active
-        </button>
-        <button className="filters__button" name="completed" onClick={() => onChange("completed")}>
-          Completed
-        </button>
+        {ALL_FILTERS.map((filter) => {
+          return (
+            <button
+              className={classNames("filters__button", {
+                "filters__button--active": filter === currentFilter,
+              })}
+              name={filter}
+              key={filter}
+              onClick={() => onChange(filter)}
+            >
+              {filter}
+            </button>
+          );
+        })}
       </div>
     </div>
   );

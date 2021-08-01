@@ -15,12 +15,18 @@
 }
 
 .filters__button {
-  background-color: transparent;
-  border: 1px solid transparent;
   font: inherit;
-  color: var(--main-dark);
+  text-transform: capitalize;
+  padding: 3px 7px;
+  background-color: transparent;
   font-weight: 300;
+  border: 1px solid transparent;
   border-radius: 3px;
+  color: var(--main-dark);
+
+  &:not(:last-child) {
+    margin-right: 5px;
+  }
 
   &:active,
   &:focus {
@@ -29,5 +35,13 @@
 
   &:hover {
     border: 1px solid var(--accent-color-light--hover);
+  }
+
+  &--active {
+    border: 1px solid var(--accent-color-light);
+
+    &:hover {
+      border: 1px solid var(--accent-color-light);
+    }
   }
 }
