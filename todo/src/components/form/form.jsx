@@ -1,13 +1,14 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useState } from "react";
+import Filters from "../filters/filters";
 
-import Input from '../input/input';
-import List from '../list/list';
-import './form.scss';
+import Input from "../input/input";
+import List from "../list/list";
+import "./form.scss";
 
 const Form = () => {
   const [toDos, setToDos] = useState([]);
 
-  console.log({ toDos });
+  const [currentFilter, setCurrentFilter] = useState("all");
 
   const handleToDoClick = (id) => {
     const newToDoList = toDos.map((el) => {
@@ -15,7 +16,7 @@ const Form = () => {
         // return Object.assign({}, el, { isCompleted: !el.isCompleted });
         return {
           ...el,
-          isCompleted: !el.isCompleted
+          isCompleted: !el.isCompleted,
         };
       }
       return el;
@@ -29,9 +30,9 @@ const Form = () => {
       {
         text: newToDo,
         isCompleted: false,
-        id: Date.now()
+        id: Date.now(),
       },
-      ...toDos
+      ...toDos,
     ];
 
     setToDos(newToDoList);
@@ -42,14 +43,35 @@ const Form = () => {
     setToDos(filteredToDos);
   };
 
+  const filteredToDos = filterToDos(toDos, currentFilter);
+
   return (
     <Fragment>
-      <div className='form'>
+      <div className="form">
         <Input onAdd={handleAdd} />
       </div>
-      <List toDos={toDos} onToDoClick={handleToDoClick} onDestroyClick={handleDestroyClick}></List>
+      <List
+        toDos={filteredToDos}
+        onToDoClick={handleToDoClick}
+        onDestroyClick={handleDestroyClick}
+      />
+      {toDos.length > 0 && (
+        <Filters
+          totalRemaining={toDos.filter((el) => !el.isCompleted).length}
+          onChange={setCurrentFilter}
+        />
+      )}
     </Fragment>
   );
+};
+
+const filterToDos = (allTodos, filter) => {
+  if (filter === "all") {
+    return allTodos;
+  } else if (filter === "active") {
+    return allTodos.filter((el) => !el.isCompleted);
+  }
+  return allTodos.filter((el) => el.isCompleted);
 };
 
 export default Form;
